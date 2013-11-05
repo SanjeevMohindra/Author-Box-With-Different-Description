@@ -47,9 +47,15 @@ function add_author_box($content) {
 	else {
 		$display_author_email='<p class="author_email"><a href="mailto:'.get_the_author_email().'" title="Send an Email to the Author of this Post">Email</a>';
 	}
+        If (get_option('ab_box_title')) {
+            $author_title = get_option('ab_box_title');
+        }
+        else {
+            $author_title = "About The Author:";
+        }
 	$author_box='
 	<div class="author_info">
-	<p><span class="author_photo">'.get_avatar(get_the_author_id() ).'</span></p><p><b><u>About the Author:</u></b></p><p>'.author_description().'</p>'.$author_post_line.'<hr>';
+	<p><span class="author_photo">'.get_avatar(get_the_author_id() ).'</span></p><p><b><u>' .$author_title. '</u></b></p><p>'.author_description().'</p>'.$author_post_line.'<hr>';
 	If (!get_option('email_on_profile'))	{
 		$author_box = $author_box.$display_author_email;
 	}

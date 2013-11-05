@@ -9,6 +9,7 @@ function author_box_options() {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
 	if ($_POST['action'] == 'update') {
+                $authortitle = $_POST['author_box_title'];
 		$_POST['show_pages'] == 'on' ? update_option('bio_on_page', 'checked') : update_option('bio_on_page', '');
 		$_POST['show_posts'] == 'on' ? update_option('bio_on_post', 'checked') : update_option('bio_on_post', '');
 		$_POST['show_top'] == 'on' ? update_option('bio_on_top', 'checked') : update_option('bio_on_top', '');
@@ -22,6 +23,7 @@ function author_box_options() {
 		$_POST['show_css'] == 'on' ? update_option('css_on_profile', 'checked') : update_option('css_on_profile', '');
 		$_POST['show_images'] == 'on' ? update_option('images_on_profile', 'checked') : update_option('images_on_profile', '');
 		$_POST['show_email'] == 'on' ? update_option('email_on_profile', 'checked') : update_option('email_on_profile', '');
+                $authortitle == NULL ? update_option('ab_box_title', '') : update_option('ab_box_title', $authortitle);
 		$message = '<div id="message" class="updated fade"><p><strong>Options Saved</strong></p></div>';
 	}
 	?>
@@ -50,7 +52,8 @@ function author_box_options() {
 		$options['messanger'] = get_option('messanger_on_profile');
 		$options['css'] = get_option('css_on_profile');
 		$options['images'] = get_option('images_on_profile');
-		$options['profileemail'] = get_option('email_on_profile');		?>
+		$options['profileemail'] = get_option('email_on_profile');
+                $boxtitle = get_option('ab_box_title'); ?>
 		<form method="post" action="">
 			<input type="hidden" name="action" value="update" />
 			<p><b>1. Where to display Author Box with Different Description</b></p>
@@ -67,12 +70,14 @@ function author_box_options() {
 			<input name="show_linkedin" type="checkbox" id="show_linkedin" '.$options['linkedin'].' /> Add Linkedin<br />
 			<input name="show_youtube" type="checkbox" id="show_youtube" '.$options['youtube'].' /> Add Youtube<br />
 			<input name="show_pinterest" type="checkbox" id="show_pinterest" '.$options['pinterest'].' /> Add Pinterest<br />
-			<p><b>4. Social Media Profiles</b></p>
+			<br /><hr /><p><b>4. Author Box Customization</b></p>
+                        <b>Author Box Title: </b><input name="author_box_title" type="text" id="author_box_title" value="'. $boxtitle. '" />
+                        <p><b>4. Social Media Profiles</b></p>
 			<input name="show_images" type="checkbox" id="show_images" '.$options['images'].' /> Show images rather than text for Social Media Profiles<br />
 			<input name="show_email" type="checkbox" id="show_email" '.$options['profileemail'].' /> Do not Show Authors Email on Social Media Profiles<br />
 			<p><b>4. CSS for Author Box Display</b></p>
 			<input name="show_css" type="checkbox" id="show_css" '.$options['css'].' /> Do Not Load the CSS for Author Box Display.<p>If you check this option, Author Box CSS will not be loaded and you need to define your own CSS for the Author Box. This is to give you flexibility to choose your own Author Box Style.</p>
-			' ?>
+			'; ?>
 			<br />
 			<input type="submit" class="button-primary" value="Save Changes" />
 			</form>
