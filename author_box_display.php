@@ -41,12 +41,14 @@ function add_author_box($content) {
 	
 	if (get_option('bio_on_post') || get_option('bio_on_page')) {
 	$author_post_line='<p><a rel="nofollow" href="'.get_the_author_meta( 'user_url' ).'">'.get_the_author_meta('display_name').'</a> &ndash; who has written <a rel="author" href="'.get_author_posts_url(get_the_author_meta( 'ID' )).'">'. get_the_author_posts().'</a> posts on <a href="'.get_bloginfo("home").'">'.get_bloginfo("name").'</a>.</p>';
-	If (get_option('images_on_profile')) {
-		$display_author_email='<p class="author_email"><a href="mailto:'.get_the_author_email().'" title="Send an Email to the Author of this Post"><img src="'.plugins_url('/image/email.png', __FILE__).'" alt="Email" width="32" height="32"></a>';
+	If (!get_option('email_on_profile'))	{
+        If (get_option('images_on_profile')) {
+		$display_author_email='<a href="mailto:'.get_the_author_email().'" title="Send an Email to the Author of this Post"><img src="'.plugins_url('/image/email.png', __FILE__).'" alt="Email" width="32" height="32"></a>';
 	}
 	else {
-		$display_author_email='<p class="author_email"><a href="mailto:'.get_the_author_email().'" title="Send an Email to the Author of this Post">Email</a>';
+		$display_author_email='<a href="mailto:'.get_the_author_email().'" title="Send an Email to the Author of this Post">Email</a>';
 	}
+        }
         If (get_option('ab_box_title')) {
             $author_title = get_option('ab_box_title');
         }
@@ -56,9 +58,6 @@ function add_author_box($content) {
 	$author_box='
 	<div class="author_info">
 	<p><span class="author_photo">'.get_avatar(get_the_author_id() ).'</span></p><p><b><u>' .$author_title. '</u></b></p><p>'.author_description().'</p>'.$author_post_line.'<hr>';
-	If (!get_option('email_on_profile'))	{
-		$author_box = $author_box.$display_author_email;
-	}
 	//Fetch the User Social Contact Infomation
 	$twitter = get_the_author_meta( 'twitter' );
 	$facebook = get_the_author_meta( 'facebook' );
@@ -118,18 +117,18 @@ function add_author_box($content) {
 	
 	if(is_single() && get_option('bio_on_post')) {
 		if (get_option('bio_on_top')) {
-			$content = ($author_box.'<div class="author_social_link">'.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div><br />'.$content);
+			$content = ($author_box.'<div class="author_social_link">'.$display_author_email.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div><br />'.$content);
 		}
 		else {
-			$content.= ($author_box.'<div class="author_social_link">'.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div>');
+			$content.= ($author_box.'<div class="author_social_link">'.$display_author_email.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div>');
 		}
     }
 	if(is_page() && get_option('bio_on_page')) {
 		if (get_option('bio_on_top')) {
-			$content = ($author_box.'<div class="author_social_link">'.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div><br />'.$content);
+			$content = ($author_box.'<div class="author_social_link">'.$display_author_email.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div><br />'.$content);
 		}
 		else {
-			$content.= ($author_box.'<div class="author_social_link">'.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div>');
+			$content.= ($author_box.'<div class="author_social_link">'.$display_author_email.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div>');
 		}
     }
 	}
