@@ -1,0 +1,15 @@
+/*
+File:			custom.css
+Description:	Custom styles for Author Box
+More Info:		http://www.makewebworld.com
+*/
+
+.authorbox_setting_detail { border:2px solid #666; 	padding:1.5em; 	text-decoration:none; margin:1.0em 1.0em 1.0em 0em; }
+
+.authorbox_setting_faq { border:1px solid #666; 	padding:1.0em; 	text-decoration:none; margin:1.0em 1.0em 1.0em 0em; }
+
+#authorbox_setting_tab { text-align:left;}
+
+.authorbox_setting_options { width:60%; float:left; padding:1.5em; text-align: left; border:2px solid #666; margin:1.0em 1.0em 1.0em 0em; }
+
+.authorbox_setting_rss { width:30%; float:left; padding:1.5em; text-align: left; border:2px solid #666; margin:1.0em 1.0em 1.0em 0em; }
