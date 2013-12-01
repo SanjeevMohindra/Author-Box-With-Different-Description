@@ -3,8 +3,8 @@ Contributors: sanjeevmohindra
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VT69M3R79VBJ4&lc=US&item_name=Author%20Box%20Plugin&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Tags: author box,contact fields,author description,post,page
 Requires at least: 3.0
-Tested up to: 3.5.2
-Stable tag: 1.3.1
+Tested up to: 3.7.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,9 +24,7 @@ Features:
 6. [who has written 100 post] link to the author page with rel="author", you just need to link back to the author page on your Google Profile Page to make your authorship information to appear in search results for the content you create. Learn more: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1408986
 7. Option to show social media profile as an image or text, you can select it from Admin Panel.
 
-Check the detailed instruction at [this page.](http://forum.makewebworld.com/b2_support-requests/t3_read-this-author-box-plugin-guide/ "Author Box Plugin With Different Description")
-
-For Support Open a ticket at [Support Forum](http://forum.makewebworld.com/b2_support-requests/ "Support Forum for Author Box Plugin With Different Description")
+For Support Open a ticket at [Support Forum](http://makewebworld.com/contact-us/ "Support Ticket for Author Box Plugin With Different Description")
 
 == Installation ==
 
@@ -50,6 +48,11 @@ Custom Author Description is saved in post meta and if you decide to uninstall t
 
 == Changelog ==
 
+= 1.3.2 =
+* Added options to customize Author Box Titles.
+* New Flat icons design
+* Bug Fixes
+
 = 1.3.1 =
 * Added an option to hide author box on specific post with a custom field "author_disp". Set it to "No" if you want to hide the Author box.
 * Added a new class to social icons.
@@ -70,4 +73,4 @@ Custom Author Description is saved in post meta and if you decide to uninstall t
 == Upgrade Notice ==
 
 = 1.3.1 =
-* Added an option to hide author box on specific post with a custom field "author_disp". Set it to "No" if you want to hide the Author box.
+* Added options to customize Author Box Titles and bug fixes.

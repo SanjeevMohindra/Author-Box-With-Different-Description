@@ -9,7 +9,9 @@ function author_box_options() {
 		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 	}
 	if ($_POST['action'] == 'update') {
-                $authortitle = $_POST['author_box_title'];
+                if ($_POST[empty_title] == 'on') { $authortitle = '';
+                } elseif ($_POST['author_box_title'] == NULL) { $authortitle = 'About The Author';
+                  } else { $authortitle = $_POST['author_box_title']; } 
 		$_POST['show_pages'] == 'on' ? update_option('bio_on_page', 'checked') : update_option('bio_on_page', '');
 		$_POST['show_posts'] == 'on' ? update_option('bio_on_post', 'checked') : update_option('bio_on_post', '');
 		$_POST['show_top'] == 'on' ? update_option('bio_on_top', 'checked') : update_option('bio_on_top', '');
@@ -53,7 +55,9 @@ function author_box_options() {
 		$options['css'] = get_option('css_on_profile');
 		$options['images'] = get_option('images_on_profile');
 		$options['profileemail'] = get_option('email_on_profile');
-                $boxtitle = get_option('ab_box_title'); ?>
+                $boxtitle = get_option('ab_box_title');
+                if ($boxtitle == NULL) { $emptytitle = 'checked';}
+                ?>
 		<form method="post" action="">
 			<input type="hidden" name="action" value="update" />
 			<p><b>1. Where to display Author Box with Different Description</b></p>
@@ -72,6 +76,7 @@ function author_box_options() {
 			<input name="show_pinterest" type="checkbox" id="show_pinterest" '.$options['pinterest'].' /> Add Pinterest<br />
 			<br /><hr /><p><b>4. Author Box Customization</b></p>
                         <b>Author Box Title: </b><input name="author_box_title" type="text" id="author_box_title" value="'. $boxtitle. '" />
+                        <input name="empty_title" type="checkbox" id="empty_title" '.$emptytitle.' /> Remove Title From Author Box<br />
                         <p><b>4. Social Media Profiles</b></p>
 			<input name="show_images" type="checkbox" id="show_images" '.$options['images'].' /> Show images rather than text for Social Media Profiles<br />
 			<input name="show_email" type="checkbox" id="show_email" '.$options['profileemail'].' /> Do not Show Authors Email on Social Media Profiles<br />
@@ -114,9 +119,27 @@ function author_box_options() {
 			  fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));</script>
 			<div class="fb-like" data-href="http://www.facebook.com/MakeWebWorld" data-send="false" data-width="200" data-show-faces="true"></div></p> 
-		<p><a href="https://twitter.com/makewebworld" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @makewebworld</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p> 
-		<p><a href="http://wordpress.org/extend/plugins/author-box-with-different-description/" title="Author Box Plugin with Different Description" target="_blank">Give rating on Wordpress.org</a></p> 
-	</div>
+		<p><!-- Place this tag where you want the widget to render. -->
+                    <div class="g-page" data-width="273" data-href="//plus.google.com/106123958131751689609" data-layout="landscape" data-showtagline="false" data-rel="publisher"></div>
+
+                    <!-- Place this tag after the last widget tag. -->
+                    <script type="text/javascript">
+                      (function() {
+                        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                        po.src = 'https://apis.google.com/js/plusone.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                      })();
+                    </script></p>
+                <p><a href="https://twitter.com/makewebworld" class="twitter-follow-button" data-show-count="true" data-lang="en">Follow @makewebworld</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script></p> 
+		<p><a href="http://wordpress.org/extend/plugins/author-box-with-different-description/" title="Author Box Plugin with Different Description" target="_blank">Give rating on Wordpress.org</a></p>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                ">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+        </div>
 	</div>
 	<div id="supportbox" class="postbox">
 		<h3 class="hndle"><span><b><u>Plugin Support:</u></b></span></h3>

@@ -3,13 +3,13 @@
 Plugin Name: Author Box With Different Description
 Plugin URI: http://makewebworld.com/author-box-plugin/
 Description: A Plugin which will show different author description in the author box based on the post meta data.
-Version: 1.3.1
+Version: 1.3.2
 Author: Sanjeev Mohindra
 Author URI: http://makewebworld.com/
 License: GPL2
 */
 
-/*  Copyright 2012  Sanjeev Mohindra  (email : sanjeev@makewebworld.com)
+/*  Copyright 2012  Sanjeev Mohindra  (email : admin_makewebworld@makewebworld.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License, version 2, as 
@@ -36,7 +36,9 @@ add_action( 'admin_menu', 'author_box_menu' );
 add_filter('user_contactmethods','add_new_contactmethod',99);
 
 /*Add CSS for the Author Box Display*/
-add_action('wp_enqueue_scripts', 'author_box_styles');
+if (!get_option('css_on_profile')) {
+    add_action('wp_enqueue_scripts', 'author_box_styles');
+}
 
 /*Display the author Box*/
 add_filter('the_content', 'add_author_box');

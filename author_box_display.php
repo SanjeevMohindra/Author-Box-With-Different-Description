@@ -29,10 +29,8 @@ function add_new_contactmethod($contactmethods) {
 }
 
 function author_box_styles() {
-	if (!get_option('css_on_profile')) {
-    wp_register_style('authorbox_css', plugins_url('Author_Box_disp.css', __FILE__) );
-    wp_enqueue_style( 'authorbox_css');
-	}
+        wp_register_style('authorbox_css', plugins_url('Author_Box_disp.css', __FILE__) );
+        wp_enqueue_style( 'authorbox_css');
 }
 
 function add_author_box($content) {
@@ -49,15 +47,10 @@ function add_author_box($content) {
 		$display_author_email='<a href="mailto:'.get_the_author_email().'" title="Send an Email to the Author of this Post">Email</a>';
 	}
         }
-        If (get_option('ab_box_title')) {
-            $author_title = get_option('ab_box_title');
-        }
-        else {
-            $author_title = "About The Author:";
-        }
+        $author_title = get_option('ab_box_title');
 	$author_box='
 	<div class="author_info">
-	<p><span class="author_photo">'.get_avatar(get_the_author_id() ).'</span></p><p><b><u>' .$author_title. '</u></b></p><p>'.author_description().'</p>'.$author_post_line.'<hr>';
+	<p><span class="author_photo">'.get_avatar(get_the_author_id() ).'</span></p><p><b><u>' .$author_title. '</u></b></p><p>'.author_description().'</p>'.$author_post_line.'<hr />';
 	//Fetch the User Social Contact Infomation
 	$twitter = get_the_author_meta( 'twitter' );
 	$facebook = get_the_author_meta( 'facebook' );
