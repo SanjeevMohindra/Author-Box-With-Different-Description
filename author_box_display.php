@@ -34,10 +34,48 @@ function author_box_styles() {
 }
 
 function add_author_box($content) {
-	If (author_box_display_status()) {
-	//Define the Main Part of Author Box
-	
-	if (get_option('bio_on_post') || get_option('bio_on_page')) {
+    If (author_box_display_status()) {
+        if (get_option('bio_on_post') || get_option('bio_on_page')) {
+            if(is_single() && get_option('bio_on_post')) {
+		if (get_option('bio_on_top')) {
+			$content = (display_author_box() . '<br />' . $content);
+		}
+		else {
+			$content.= display_author_box();
+		}
+    }
+	if(is_page() && get_option('bio_on_page')) {
+		if (get_option('bio_on_top')) {
+			$content = (display_author_box() . '<br />' . $content);
+		}
+		else {
+			$content.= display_author_box();
+		}
+    }
+	}
+    return $content;
+        }
+}
+
+function author_description() {
+global $post;
+$source = get_post_meta($post->ID, 'author_desc', true);
+  if ($source) {
+    return $source; }
+  else {
+    return get_the_author_description(); }
+}
+
+function author_box_display_status() {
+global $post;
+$source = get_post_meta($post->ID, 'author_disp', true);
+  if (strtolower($source) == 'no') {
+    return false; }
+  else {
+    return true; }
+}
+
+function display_author_box() {
 	$author_post_line='<p><a rel="nofollow" href="'.get_the_author_meta( 'user_url' ).'">'.get_the_author_meta('display_name').'</a> &ndash; who has written <a rel="author" href="'.get_author_posts_url(get_the_author_meta( 'ID' )).'">'. get_the_author_posts().'</a> posts on <a href="'.get_bloginfo("home").'">'.get_bloginfo("name").'</a>.</p>';
 	If (!get_option('email_on_profile'))	{
         If (get_option('images_on_profile')) {
@@ -106,44 +144,9 @@ function add_author_box($content) {
 			$display_pinterest_profile='&nbsp;&#8226;&nbsp;<a title="Pinterest" rel="me nofollow" href="' . esc_url($pinterest_profile) . '" target="_blank">Pinterest</a>';
 		}
 	}
+        
+        $author_box_content = $author_box.'<div class="author_social_link">'.$display_author_email.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div>';
 	//Dynamic Output of the Author Box (Show Info you've set)
-	
-	if(is_single() && get_option('bio_on_post')) {
-		if (get_option('bio_on_top')) {
-			$content = ($author_box.'<div class="author_social_link">'.$display_author_email.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div><br />'.$content);
-		}
-		else {
-			$content.= ($author_box.'<div class="author_social_link">'.$display_author_email.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div>');
-		}
-    }
-	if(is_page() && get_option('bio_on_page')) {
-		if (get_option('bio_on_top')) {
-			$content = ($author_box.'<div class="author_social_link">'.$display_author_email.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div><br />'.$content);
-		}
-		else {
-			$content.= ($author_box.'<div class="author_social_link">'.$display_author_email.$display_google_profile.$display_facebook_profile.$display_twitter_profile.$display_youtube_profile.$display_linkedin_profile.$display_pinterest_profile.'</p></div></div>');
-		}
-    }
-	}
-	}
-    return $content;
-}
-
-function author_description() {
-global $post;
-$source = get_post_meta($post->ID, 'author_desc', true);
-  if ($source) {
-    return $source; }
-  else {
-    return get_the_author_description(); }
-}
-
-function author_box_display_status() {
-global $post;
-$source = get_post_meta($post->ID, 'author_disp', true);
-  if (strtolower($source) == 'no') {
-    return false; }
-  else {
-    return true; }
+        return $author_box_content;
 }
 ?>
