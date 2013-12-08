@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=VT69M
 Tags: author box,contact fields,author description,post,page
 Requires at least: 3.0
 Tested up to: 3.7.1
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,8 +23,11 @@ Features:
 5. Support for custom CSS, so you can customize your author box display. You can stop loading the Author Box CSS and create a custom tags for your author box.
 6. [who has written 100 post] link to the author page with rel="author", you just need to link back to the author page on your Google Profile Page to make your authorship information to appear in search results for the content you create. Learn more: http://support.google.com/webmasters/bin/answer.py?hl=en&answer=1408986
 7. Option to show social media profile as an image or text, you can select it from Admin Panel.
+8. Option to add author box manually at any location in your theme.
 
-For Support Open a ticket at [Support Forum](http://makewebworld.com/contact-us/ "Support Ticket for Author Box Plugin With Different Description")
+For Support Open a ticket at [Support Forum](http://makewebworld.com/contact-us/ "Support Ticket for Author Box Plugin With Different Description").
+
+[Github Repository] (https://github.com/SanjeevMohindra/Author-Box-With-Different-Description "Author Box GitHub Repository")
 
 == Installation ==
 
@@ -36,17 +39,19 @@ For Support Open a ticket at [Support Forum](http://makewebworld.com/contact-us/
 
 = I am not seeing any custom field after installing the plugin? =
 
-You might not be seeing it for the first time. Go ahead and enter it manually in your custom field box. You should give a name as author_desc and enter the description of the author. Next time onwards you can just select this field from the custom field dropdown menu.
+You might not be seeing it for the first time. Go ahead and enter it manually in your custom field box. You should give a name as author_desc and enter the description of the author. Next time onwards you can just select this field from the custom field drop-down menu.
 
 = If I decide to uninstall the plugin, will I lose my custom author description? =
 
-Custom Author Description is saved in post meta and if you decide to uninstall the plugin because of any reason, you will not lose your custom description. If you reinstall it again, it will start fatching the custom Description for you.
+Custom Author Description is saved in post meta and if you decide to uninstall the plugin because of any reason, you will not lose your custom description. If you reinstall it again, it will start fetching the custom Description for you.
 
 == Screenshots ==
 
 1. Author Box Layout
 
 == Changelog ==
+= 1.3.3 =
+* New Author box manual placement option.
 
 = 1.3.2 =
 * Added options to customize Author Box Titles.
@@ -72,5 +77,5 @@ Custom Author Description is saved in post meta and if you decide to uninstall t
 
 == Upgrade Notice ==
 
-= 1.3.1 =
-* Added options to customize Author Box Titles and bug fixes.
+= 1.3.3 =
+* New Author box manual placement option.

@@ -35,8 +35,7 @@ function author_box_styles() {
 
 function add_author_box($content) {
     If (author_box_display_status()) {
-        if (get_option('bio_on_post') || get_option('bio_on_page')) {
-            if(is_single() && get_option('bio_on_post')) {
+       if(is_single() && get_option('bio_on_post')) {
 		if (get_option('bio_on_top')) {
 			$content = (display_author_box() . '<br />' . $content);
 		}
@@ -44,17 +43,16 @@ function add_author_box($content) {
 			$content.= display_author_box();
 		}
     }
-	if(is_page() && get_option('bio_on_page')) {
-		if (get_option('bio_on_top')) {
+    If(is_page() && get_option('bio_on_page')) {
+		If (get_option('bio_on_top')) {
 			$content = (display_author_box() . '<br />' . $content);
 		}
 		else {
 			$content.= display_author_box();
 		}
+    }    
     }
-	}
     return $content;
-        }
 }
 
 function author_description() {
@@ -79,7 +77,7 @@ function display_author_box() {
 	$author_post_line='<p><a rel="nofollow" href="'.get_the_author_meta( 'user_url' ).'">'.get_the_author_meta('display_name').'</a> &ndash; who has written <a rel="author" href="'.get_author_posts_url(get_the_author_meta( 'ID' )).'">'. get_the_author_posts().'</a> posts on <a href="'.get_bloginfo("home").'">'.get_bloginfo("name").'</a>.</p>';
 	If (!get_option('email_on_profile'))	{
         If (get_option('images_on_profile')) {
-		$display_author_email='<a href="mailto:'.get_the_author_email().'" title="Send an Email to the Author of this Post"><img src="'.plugins_url('/image/email.png', __FILE__).'" alt="Email" width="32" height="32"></a>';
+		$display_author_email='<a href="mailto:'.get_the_author_email().'" title="Send an Email to the Author of this Post"><img src="'.plugins_url('/image/email.png', __FILE__).'" alt="Email" width="48" height="48"></a>';
 	}
 	else {
 		$display_author_email='<a href="mailto:'.get_the_author_email().'" title="Send an Email to the Author of this Post">Email</a>';
@@ -98,7 +96,7 @@ function display_author_box() {
 	$pinterest_profile = get_the_author_meta('pinterest_profile');
 	if($google_profile){
 		If (get_option('images_on_profile')) {
-			$display_google_profile='&nbsp;<a title="My Google +" rel="me nofollow" href="' . esc_url($google_profile) . '" target="_blank"><img src="'.plugins_url('/image/googleplus.png', __FILE__).'" alt="Google Plus" width="32" height="32"></a>';
+			$display_google_profile='&nbsp;<a title="My Google +" rel="me nofollow" href="' . esc_url($google_profile) . '" target="_blank"><img src="'.plugins_url('/image/googleplus.png', __FILE__).'" alt="Google Plus" width="48" height="48"></a>';
 		}
 		else {
 			$display_google_profile='&nbsp;&#8226;&nbsp;<a title="My Google +" rel="me nofollow" href="' . esc_url($google_profile) . '" target="_blank">Google +</a>';
@@ -106,7 +104,7 @@ function display_author_box() {
 	}
 	if($facebook){
 		If (get_option('images_on_profile')) {
-			$display_facebook_profile='&nbsp;<a title="My facebook" rel="me nofollow" href="' . esc_url($facebook) . '" target="_blank"><img src="'.plugins_url('/image/facebook.png', __FILE__).'" alt="Facebook" width="32" height="32"></a>';
+			$display_facebook_profile='&nbsp;<a title="My facebook" rel="me nofollow" href="' . esc_url($facebook) . '" target="_blank"><img src="'.plugins_url('/image/facebook.png', __FILE__).'" alt="Facebook" width="48" height="48"></a>';
 		}
 		else {
 			$display_facebook_profile='&nbsp;&#8226;&nbsp;<a title="My facebook" rel="me nofollow" href="' . esc_url($facebook) . '" target="_blank">Facebook </a>';
@@ -114,7 +112,7 @@ function display_author_box() {
 	}
 	if($twitter){
 		If (get_option('images_on_profile')) {
-			$display_twitter_profile='&nbsp;<a title="My Twitter" rel="me nofollow" href="' . esc_url($twitter) . '" target="_blank"><img src="'.plugins_url('/image/twitter.png', __FILE__).'" alt="Twitter" width="32" height="32"></a>';
+			$display_twitter_profile='&nbsp;<a title="My Twitter" rel="me nofollow" href="' . esc_url($twitter) . '" target="_blank"><img src="'.plugins_url('/image/twitter.png', __FILE__).'" alt="Twitter" width="48" height="48"></a>';
 		}
 		else {
 			$display_twitter_profile='&nbsp;&#8226;&nbsp;<a title="My Twitter" rel="me nofollow" href="' . esc_url($twitter) . '" target="_blank">Twitter</a>';
@@ -122,7 +120,7 @@ function display_author_box() {
 	}
 	if($youtube_profile){
 		If (get_option('images_on_profile')) {
-			$display_youtube_profile='&nbsp;<a title="My YouTube" rel="me nofollow" href="' . esc_url($youtube_profile) . '" target="_blank"><img src="'.plugins_url('/image/youtube.png', __FILE__).'" alt="YouTube" width="32" height="32"></a>';
+			$display_youtube_profile='&nbsp;<a title="My YouTube" rel="me nofollow" href="' . esc_url($youtube_profile) . '" target="_blank"><img src="'.plugins_url('/image/youtube.png', __FILE__).'" alt="YouTube" width="48" height="48"></a>';
 		}
 		else {
 			$display_youtube_profile='&nbsp;&#8226;&nbsp;<a title="YouTube" rel="me nofollow" href="' . esc_url($youtube_profile) . '" target="_blank">YouTube</a>';
@@ -130,7 +128,7 @@ function display_author_box() {
 	}
 	if($linkedin_profile){
 		If (get_option('images_on_profile')) {
-			$display_linkedin_profile='&nbsp;<a title="My Linkedin" rel="me nofollow" href="' . esc_url($linkedin_profile) . '" target="_blank"><img src="'.plugins_url('/image/linkedin.png', __FILE__).'" alt="Linkedin" width="32" height="32"></a>';
+			$display_linkedin_profile='&nbsp;<a title="My Linkedin" rel="me nofollow" href="' . esc_url($linkedin_profile) . '" target="_blank"><img src="'.plugins_url('/image/linkedin.png', __FILE__).'" alt="Linkedin" width="48" height="48"></a>';
 		}
 		else {
 			$display_linkedin_profile='&nbsp;&#8226;&nbsp;<a title="Linkedin" rel="me nofollow" href="' . esc_url($linkedin_profile) . '" target="_blank">LinkedIn</a>';
@@ -138,7 +136,7 @@ function display_author_box() {
 	}
 	if($pinterest_profile){
 		If (get_option('images_on_profile')) {
-			$display_pinterest_profile='&nbsp;<a title="My Pinterest" rel="me nofollow" href="' . esc_url($pinterest_profile) . '" target="_blank"><img src="'.plugins_url('/image/pinterest.png', __FILE__).'" alt="Pinterest" width="32" height="32"></a>';
+			$display_pinterest_profile='&nbsp;<a title="My Pinterest" rel="me nofollow" href="' . esc_url($pinterest_profile) . '" target="_blank"><img src="'.plugins_url('/image/pinterest.png', __FILE__).'" alt="Pinterest" width="48" height="48"></a>';
 		}
 		else {
 			$display_pinterest_profile='&nbsp;&#8226;&nbsp;<a title="Pinterest" rel="me nofollow" href="' . esc_url($pinterest_profile) . '" target="_blank">Pinterest</a>';
